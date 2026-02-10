@@ -1,0 +1,23 @@
+name: Test Self-Hosted Runner
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  test-runner:
+    runs-on: self-hosted
+
+    steps:
+      - name: Show runner info
+        run: |
+          echo "Runner name: $RUNNER_NAME"
+          echo "Hostname: $(hostname)"
+          uname -a
+          whoami
+
+      - name: Test file write
+        run: |
+          echo "Hello from self-hosted runner" > test.txt
+          ls -l
+          cat test.txt
