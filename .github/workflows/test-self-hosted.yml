@@ -1,23 +1,14 @@
-name: Test Self-Hosted Runner
+name: Test Org Runner
 
 on:
-  push:
   workflow_dispatch:
 
 jobs:
-  test-runner:
-    runs-on: self-hosted
-
+  test:
+    runs-on: [self-hosted, linux, x64]
     steps:
-      - name: Show runner info
+      - name: Sanity
         run: |
-          echo "Runner name: $RUNNER_NAME"
-          echo "Hostname: $(hostname)"
+          echo "Org runner is live 🚀"
+          hostname
           uname -a
-          whoami
-
-      - name: Test file write
-        run: |
-          echo "Hello from self-hosted runner" > test.txt
-          ls -l
-          cat test.txt
